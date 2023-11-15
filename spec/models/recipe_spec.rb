@@ -1,14 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:description) }
-    it { should validate_presence_of(:preparation_time) }
-    it { should validate_presence_of(:cooking_time) }
-  end
+  let (:user) { User.new(name: 'Tom')}
+  let (:recipe) { Recipe.new(name: 'Garlic soup', description: 'Description of garlic soup', preparation_time: '15 mins', cooking_time: '30 mins', public: true, user: user) }
 
-  describe 'associations' do
-    it { should belong_to(:user) }
+  describe 'Validations' do
+    before { recipe.save }
+
+    it 'should validate presence of a name' do
+      expect(recipe).to be_valid
+    end
+
+    it 'should validate presence of a description' do
+      expect(recipe).to be_valid
+    end
+
+    it 'should validate presence of a preparation time' do
+      expect(recipe).to be_valid
+    end
+
+    it 'should validate presence of a cooking time' do
+      expect(recipe).to be_valid
+    end
   end
 end
