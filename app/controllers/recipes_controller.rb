@@ -16,7 +16,9 @@ class RecipesController < ApplicationController
 
   describe 'DELETE /recipes/:id' do
     let(:user) { User.create(name: 'tom') }
-    let(:recipe) { Recipe.create(name: 'Carrot soup', preparation_time: '12 mins', cooking_time: '1 hour', public: true, user: user) }
+    let(:recipe) do
+      Recipe.create(name: 'Carrot soup', preparation_time: '12 mins', cooking_time: '1 hour', public: true, user:)
+    end
 
     it 'deletes the food record' do
       recipe

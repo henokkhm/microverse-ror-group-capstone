@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe "Recipes", type: :request do
-  describe "GET /index" do
+RSpec.describe 'Recipes', type: :request do
+  describe 'GET /index' do
     before do
       get recipes_path
     end
@@ -13,7 +13,10 @@ RSpec.describe "Recipes", type: :request do
 
   describe 'DELETE /recipes/:id' do
     let(:user) { User.create(name: 'tom') }
-    let(:recipe) { Recipe.create( id: 1, name: 'Carrot soup', preparation_time: '12 mins', cooking_time: '1 hour', public: true, user: user) }
+    let(:recipe) do
+      Recipe.create(id: 1, name: 'Carrot soup', preparation_time: '12 mins', cooking_time: '1 hour', public: true,
+                    user:)
+    end
 
     it 'deletes the food record' do
       recipe
