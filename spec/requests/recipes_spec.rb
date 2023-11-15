@@ -11,10 +11,9 @@ RSpec.describe "Recipes", type: :request do
     end
   end
 
-  
   describe 'DELETE /recipes/:id' do
     let(:user) { User.create(name: 'tom') }
-    let(:recipe) { Recipe.create(name: 'Carrot soup', preparation_time: '12 mins', cooking_time: '1 hour', public: true, user: user) }
+    let(:recipe) { Recipe.create( id: 1, name: 'Carrot soup', preparation_time: '12 mins', cooking_time: '1 hour', public: true, user: user) }
 
     it 'deletes the food record' do
       recipe
