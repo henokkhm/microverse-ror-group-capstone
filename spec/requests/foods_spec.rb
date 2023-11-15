@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Foods", type: :request do
+RSpec.describe 'Foods', type: :request do
   describe 'GET /index' do
     before do
       get foods_path
@@ -30,15 +30,9 @@ RSpec.describe "Foods", type: :request do
       expect(response.status).to eq(200)
     end
 
-    ### When there are views:
-
-    # it 'renders the correct template' do
-    #   expect(response).to render_template('foods/new')
-    # end
-
-    # it 'returns the correct placeholder text' do
-    #   expect(response.body).to include('New food')
-    # end
+    it 'returns the correct placeholder text' do
+      expect(response.body).to include('Add new food')
+    end
   end
 
   describe 'POST /foods' do
@@ -61,9 +55,9 @@ RSpec.describe "Foods", type: :request do
 
     context 'with invalid parameters' do
       it 'does not create a new food record' do
-        expect {
+        expect do
           post foods_path, params: { food: { name: nil, user_id: user.id } }
-        }.not_to change(Food, :count)
+        end.not_to change(Food, :count)
       end
 
       it 'sets a flash alert' do
@@ -75,14 +69,14 @@ RSpec.describe "Foods", type: :request do
 
   describe 'DELETE /foods/:id' do
     let(:user) { User.create(name: 'tom') }
-    let(:food) { Food.create(name: 'Carrot', measurement_unit: 'kg', price: 1, quantity: 2, user: user) }
+    let(:food) { Food.create(name: 'Carrot', measurement_unit: 'kg', price: 1, quantity: 2, user:) }
 
     it 'deletes the food record' do
       food
 
-      expect {
+      expect do
         delete food_path(food)
-      }.to change(Food, :count).by(-1)
+      end.to change(Food, :count).by(-1)
     end
 
     it 'redirects to the index page' do

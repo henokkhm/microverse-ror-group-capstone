@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Recipe, type: :model do
-  let (:user) { User.new(name: 'Tom')}
-  let (:recipe) { Recipe.new(name: 'Garlic soup', description: 'Description of garlic soup', preparation_time: '15 mins', cooking_time: '30 mins', public: true, user: user) }
+  let(:user) { User.new(name: 'Tom') }
+  let(:recipe) do
+    Recipe.new(name: 'Garlic soup', description: 'Description of garlic soup', preparation_time: '15 mins',
+               cooking_time: '30 mins', public: true, user:)
+  end
 
   describe 'Validations' do
     before { recipe.save }
