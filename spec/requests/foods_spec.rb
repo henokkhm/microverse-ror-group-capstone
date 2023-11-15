@@ -30,15 +30,9 @@ RSpec.describe "Foods", type: :request do
       expect(response.status).to eq(200)
     end
 
-    ### When there are views:
-
-    # it 'renders the correct template' do
-    #   expect(response).to render_template('foods/new')
-    # end
-
-    # it 'returns the correct placeholder text' do
-    #   expect(response.body).to include('New food')
-    # end
+    it 'returns the correct placeholder text' do
+      expect(response.body).to include('Add new food')
+    end
   end
 
   describe 'POST /foods' do
