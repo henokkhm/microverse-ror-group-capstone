@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Food, type: :model do
-  let (:user) { User.new(name: 'Tom')}
-  let(:food) { Food.new( name: 'Garlic', measurement_unit: 'kg', price: 10, quantity: 1, user: user ) }
+  let(:user) { User.new(name: 'Tom') }
+  let(:food) { Food.new(name: 'Garlic', measurement_unit: 'kg', price: 10, quantity: 1, user:) }
 
   describe 'Validations' do
     before { food.save }
