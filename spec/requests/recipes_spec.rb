@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.describe "Recipes", type: :request do
   describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+    before do
+      get recipes_path
+    end
+
+    it 'returns correct status' do
+      expect(response.status).to eq(200)
+    end
   end
 end
