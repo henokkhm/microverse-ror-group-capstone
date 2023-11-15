@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.1.3'
+ruby '3.2.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.1'
@@ -9,7 +9,7 @@ gem 'rails', '~> 7.1.1'
 gem 'sprockets-rails'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+gem 'pg'
 
 # Add rubocop linter
 gem 'rubocop', '>= 1.0', '< 2.0'
@@ -50,6 +50,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
+  gem 'rspec-rails'
 end
 
 group :development do
