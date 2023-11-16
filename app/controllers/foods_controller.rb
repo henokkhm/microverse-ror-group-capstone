@@ -1,23 +1,26 @@
 class FoodsController < ApplicationController
+  def current_user
+    @user = User.first
+  end
+
   def new
     @food = Food.new
   end
 
   def index
-    @user = User.find(params[:user_id])
-    @foods = Food.includes(:user).where(user_id: @user.id)
+    @foods = Food.includes(:user).where(user_id: current_user)
   end
 
   def create
     @food = Food.new(new_food)
-    @food.user = User.find(params[:user_id]) # current_user after authentication is made
+    @food.user = current_user
 
     if @food.save
-      redirect_to foods_path
       flash[:notice] = 'New food added!'
+      redirect_to foods_path
     else
       flash[:alert] = "Error! #{@food.errors.full_messages}"
-      render :new
+      redirect_to new_food_path
     end
   end
 
