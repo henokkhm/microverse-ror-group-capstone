@@ -13,7 +13,7 @@ RSpec.describe 'Food Index Page', type: :feature do
     expect(page).to have_content('Actions')
   end
 
-  it "redirects to add new food page on click" do
+  it 'redirects to add new food page on click' do
     visit foods_path
     click_link 'Add New Food'
     expect(page).to have_current_path(new_food_path)
