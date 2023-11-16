@@ -1,6 +1,6 @@
 <section>
   <h1>Add new food</h1>
-  <%= form_with model: @food, url: new_food_path do |f| %>
+  <%= form_with model: @food, url: foods_path do |f| %>
     <div>
       <%= f.label :name%>:
       <%= f.text_field :name%>
