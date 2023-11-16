@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  def publicRecipes
+  def public_recipes
     @recipes = Recipe.where(public: true)
   end
 end
