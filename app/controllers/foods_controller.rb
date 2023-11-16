@@ -13,7 +13,7 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(new_food)
-    @food.user = current_user 
+    @food.user = current_user
 
     if @food.save
       flash[:notice] = 'New food added!'
