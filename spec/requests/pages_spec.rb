@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Pages", type: :request do
+RSpec.describe 'Pages', type: :request do
   describe 'GET /public_recipes' do
     before do
       get public_recipes_path
