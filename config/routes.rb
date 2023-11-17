@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
 
   resources :users, only: [:show]
-  resources :foods, only: %i[index new create destroy]
-  resources :recipes, only: %i[index show destroy]
+  resources :foods, only: [ :index, :new, :create, :destroy ]
+  resources :recipes, only: [ :index, :show, :destroy ]
+  get "/public_recipes", to: "pages#public_recipes"
 
   get 'up' => 'rails/health#show', as: :rails_health_check
 
