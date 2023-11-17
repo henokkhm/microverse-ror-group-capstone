@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <header>
+      <% unless controller_path.start_with?('devise/') %>
+        <%= render 'partials/navbar' %>
+      <% end %>
+    </header>
     <% flash.each do |key, value| %>
       <div class="flash <%= key %>">
         <%= value %>
