@@ -16,11 +16,6 @@
         <%= render 'partials/navbar' %>
       <% end %>
     </header>
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>">
-        <%= value %>
-      </div>
-    <% end %>
     
     <!-- Devise uses notice and alert messages -->
     <p class="notice"><%= notice %></p> 

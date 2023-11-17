@@ -1,15 +1,23 @@
 <section>
+  <%= link_to 'Add Recipe', new_recipe_path %>
+  <% user_has_recipes = false %>
   <% @recipes.each do |recipe| %>
-    <section>
-      <%= link_to recipe_path(recipe) do %>
-      <h3><%= recipe.name %> </h3>
-      <% end %>
-      <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |f| %>
-        <%= f.submit 'Remove' %>
-      <% end %>
-    </section>
-    <section>
-      <p><%= recipe.description %> </p>
-    </section>
+    <% if recipe.user == current_user %>
+      <% user_has_recipes = true %>
+      <section>
+        <%= link_to recipe_path(recipe) do %>
+        <h3><%= recipe.name %> </h3>
+        <% end %>
+        <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |f| %>
+          <%= f.submit 'Remove' %>
+        <% end %>
+      </section>
+      <section>
+        <p><%= recipe.description %> </p>
+      </section>
+    <% end %>
+  <% end %>
+  <% unless user_has_recipes %>
+    <p>You have no recipes.</p>
   <% end %>
 </section>
