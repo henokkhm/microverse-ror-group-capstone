@@ -27,6 +27,12 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+    redirect_to recipes_path, notice: 'Recipe updated successfully!'
+  end
+  
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy!
