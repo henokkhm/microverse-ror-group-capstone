@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.where(user_id: current_user)
   end
 
   def show
@@ -11,7 +13,11 @@ class RecipesController < ApplicationController
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy!
-    flash[:success] = 'Recipe deleted successfully!'
+    flash[:notice] = 'Recipe deleted successfully!'
     redirect_to recipes_path
+  end
+
+  def public_recipes
+    @recipes = Recipe.includes(:user).where(public: true).order(created_at: :desc)
   end
 end
