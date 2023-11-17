@@ -22,9 +22,10 @@
     </div>
   </section>
   <%= link_to 'Generate shopping list' %>
-  <%# if current_user == @recipe.user_id do %>
-    <%= link_to 'Add food', new_food_path %>
-  <%# end %>
+  <% if current_user.id == @recipe.user_id %>
+    <%= link_to 'Add Ingredients'%>
+    <%# link to update the shopping list table %>
+  <% end %>
   <section>
     <%= render 'partials/recipe_table' %>
   </section>
