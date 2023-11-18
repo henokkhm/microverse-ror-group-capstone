@@ -1,32 +1,36 @@
 <section>
   <h1><%= @recipe.name %> </h1>
-  <section>
-    <p>Preparation time: <%= @recipe.preparation_time %> </p>
-    <p>cooking time: <%= @recipe.cooking_time %> </p>
-    <p>Steps:</p>
-    <p><%= @recipe.description %> </p>
-    <div>
-      <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch, remote: true) do |f| %>
-        <% if @recipe.public %>
-          <%= value = 'Public'%>
-        <% else %>
-          <%= value = 'Private'%>
+  <% if @user_has_access %>
+    <section>
+      <p>Preparation time: <%= @recipe.preparation_time %> </p>
+      <p>cooking time: <%= @recipe.cooking_time %> </p>
+      <p>Steps:</p>
+      <p><%= @recipe.description %> </p>
+      <div>
+        <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch, remote: true) do |f| %>
+          <% if @recipe.public %>
+            <%= value = 'Public'%>
+          <% else %>
+            <%= value = 'Private'%>
+          <% end %>
+          <%= f.hidden_field :public, value: !@recipe.public, disabled: true %>
+          <%if @recipe.public? %>
+            <%= f.submit 'Switch to private' %>
+          <% else %>
+            <%= f.submit 'Switch to public' %>
+          <% end %>
         <% end %>
-        <%= f.hidden_field :public, value: !@recipe.public, disabled: true %>
-        <%if @recipe.public? %>
-          <%= f.submit 'Switch to private' %>
-        <% else %>
-          <%= f.submit 'Switch to public' %>
-        <% end %>
-      <% end %>
-    </div>
-  </section>
-  <%= link_to 'Generate shopping list' %>
-  <% if current_user.id == @recipe.user_id %>
-    <%= link_to 'Add Ingredients'%>
-    <%# link to update the shopping list table %>
+      </div>
+    </section>
+    <%= link_to 'Generate shopping list' %>
+    <% if current_user.id == @recipe.user_id %>
+      <%= link_to 'Add Ingredients', new_recipe_foods_recipe_path(@recipe) %>
+      <%# link to update the shopping list table %>
+    <% end %>
+    <section>
+      <%= render 'partials/recipe_table' %>
+    </section>
+  <% else %>
+    <section>You do not have access to this recipi because the owner has not made it public.</section>
   <% end %>
-  <section>
-    <%= render 'partials/recipe_table' %>
-  </section>
 </section>

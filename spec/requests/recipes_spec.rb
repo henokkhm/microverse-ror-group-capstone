@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Recipes', type: :request do
+  let(:user) { User.create(name: 'tom', email: 'name@gmail.com', password: '12345678') }
+
+  before do
+    sign_in user
+  end
+
   describe 'GET /index' do
     before do
       get recipes_path
@@ -12,7 +18,6 @@ RSpec.describe 'Recipes', type: :request do
   end
 
   describe 'DELETE /recipes/:id' do
-    let(:user) { User.create(name: 'tom') }
     let(:recipe) do
       Recipe.create(id: 1, name: 'Carrot soup', preparation_time: '12 mins', cooking_time: '1 hour', public: true,
                     user:)
