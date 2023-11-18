@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'Food Index Page', type: :feature do
+  let(:user) { User.create(name: 'tom', email: 'name@gmail.com', password: '12345678') }
+  before do
+    sign_in user
+  end
   it 'displays placeholders' do
     visit foods_path
 
