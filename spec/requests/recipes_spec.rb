@@ -45,7 +45,7 @@ RSpec.describe 'Recipes', type: :request do
       expect(flash[:notice]).to eq('Recipe deleted successfully!')
     end
   end
-  
+
   describe 'GET /public_recipes' do
     before do
       get public_recipes_path
