@@ -1,6 +1,5 @@
 <section>
   <h1>Food list</h1>
-  <section>
-    <%= render 'partials/food_table' %>
-  </section>
+  <%= link_to 'Add New Food', new_food_path, class: 'btn' %>
+  <%= render 'partials/food_table' %>
 </section>

@@ -1,7 +1,6 @@
-<section>
-  <%= link_to 'Add New Food', new_food_path %>
-  <section id="table">
-    <table>
+<div>
+  <div id="table">
+    <table class="generic-table">
       <thead>
         <tr>
           <th>Name</th>
@@ -20,18 +19,18 @@
             <td>$<%= food.price %></td>
             <td>
               <%= form_with model: food, url: food_path(food), method: :delete do |f| %>
-                <%= f.submit 'Delete' %>
+                <%= f.submit 'Delete', class: 'btn btn-danger' %>
               <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-  </section>
+  </div>
   <% if @foods.empty? %>
     <p>You have no food</p>
     <script>
       document.getElementById('table').style.display = 'none';
     </script>
   <% end %>
-</section>
+</div>
