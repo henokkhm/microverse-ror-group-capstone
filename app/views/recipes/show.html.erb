@@ -6,21 +6,23 @@
       <p>cooking time: <%= @recipe.cooking_time %> </p>
       <p>Steps:</p>
       <p><%= @recipe.description %> </p>
-      <div>
-        <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch, remote: true) do |f| %>
-          <% if @recipe.public %>
-            <%= value = 'Public'%>
-          <% else %>
-            <%= value = 'Private'%>
+      <% if current_user.id == @recipe.user_id %>
+        <div>
+          <%= form_with(model: @recipe, url: recipe_path(@recipe), method: :patch, remote: true) do |f| %>
+            <% if @recipe.public %>
+              <%= value = 'Public'%>
+            <% else %>
+              <%= value = 'Private'%>
+            <% end %>
+            <%= f.hidden_field :public, value: !@recipe.public, disabled: true %>
+            <%if @recipe.public? %>
+              <%= f.submit 'Switch to private' %>
+            <% else %>
+              <%= f.submit 'Switch to public' %>
+            <% end %>
           <% end %>
-          <%= f.hidden_field :public, value: !@recipe.public, disabled: true %>
-          <%if @recipe.public? %>
-            <%= f.submit 'Switch to private' %>
-          <% else %>
-            <%= f.submit 'Switch to public' %>
-          <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </section>
     <%= link_to 'Generate shopping list', general_shopping_lists_path %>
     <% if current_user.id == @recipe.user_id %>
