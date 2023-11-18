@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
     
   get "/public_recipes", to: "recipes#public_recipes"
+  get "/general_shopping_lists", to: "general_shopping_lists#index"
   # get "/recipes/:id/add-ingredients", to: "recipes#ingredients", as: "add_ingredients"
 
   get 'up' => 'rails/health#show', as: :rails_health_check
