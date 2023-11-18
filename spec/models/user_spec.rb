@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { User.new(name: 'Tom') }
+  let(:user) { User.new(name: 'name', email: 'name@gmail.com', password: '12345678') }
 
   describe 'Validations' do
     before { user.save }

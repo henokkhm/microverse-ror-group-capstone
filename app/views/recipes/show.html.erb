@@ -23,7 +23,7 @@
   </section>
   <%= link_to 'Generate shopping list' %>
   <% if current_user.id == @recipe.user_id %>
-    <%= link_to 'Add Ingredients'%>
+    <%= link_to 'Add Ingredients', new_recipe_foods_recipe_path(@recipe) %>
     <%# link to update the shopping list table %>
   <% end %>
   <section>

@@ -1,0 +1,14 @@
+<section>
+<h2>Add Ingredients to <%= @foods_recipe %></h2>
+
+<%= form_with model: [@recipe, @foods_recipe], url: recipe_foods_recipe_index_path(@recipe) do |f| %>
+  <div>
+    <%= f.label :food_id, 'Select Food' %>
+    <%= f.select(:food_id, @foods.map { |food| [food.name, food.id] }, { prompt: 'Select Food' }) if @foods.present? %>
+  </div>
+  <div>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, min: 1 %>
+  </div>
+  <%= f.submit 'Add Ingredient' %>
+<% end %></section>

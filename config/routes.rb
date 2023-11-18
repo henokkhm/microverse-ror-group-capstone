@@ -8,9 +8,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
   resources :foods, only: [ :index, :new, :create, :destroy ]
-  resources :recipes, except: [:edit]
+  resources :recipes, except: [:edit] do
+    resources :foods_recipe, only: [:new, :create, :destroy]
+  end
     
   get "/public_recipes", to: "recipes#public_recipes"
+  # get "/recipes/:id/add-ingredients", to: "recipes#ingredients", as: "add_ingredients"
 
   get 'up' => 'rails/health#show', as: :rails_health_check
 
