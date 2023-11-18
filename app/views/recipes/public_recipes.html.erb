@@ -9,9 +9,10 @@
       <p>By: <%= recipe.user.name %> </p>
     </div>
     <div>
-      <p>Total food items: 4 </p>
-      <p>Total price: $203 </p>
+      <p>Total food items: <%= recipe.foods_recipes.length %> </p>
+      <p>Total price: <%= @total_prices[recipe.name] %> </p>
     </div>
   </section>
   <% end %>
 </section>
+

@@ -1,0 +1,14 @@
+<section>
+  <h1>Shopping list</h1>
+  <section>
+    <div>
+      <p>
+        Amount of food items to buy <span><%= @foods_to_buy.length %></span>
+      </p>
+      <p>
+        Total value of food needed <span><%= @grand_total %></span>
+      </p>
+    </div>
+    <%= render 'partials/shopping_list_table' %>
+  </section>
+</section>

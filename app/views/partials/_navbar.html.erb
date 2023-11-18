@@ -5,6 +5,7 @@
       <li><%= link_to 'My Foods', foods_path %></li>
       <li><%= link_to 'My Recipes', recipes_path %></li>
       <li><%= link_to 'Public Recipes', public_recipes_path %></li>
+      <li><%= link_to 'Shopping List', general_shopping_lists_path %></li>
       <li><%= button_to "Sign out", destroy_user_session_path, method: :delete %></li>         
     <% else %>
       <li><%= button_to 'Sign In', new_user_session_path %></li>

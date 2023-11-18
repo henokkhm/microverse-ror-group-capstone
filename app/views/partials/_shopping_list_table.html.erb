@@ -1,0 +1,28 @@
+<section>
+  <section id="table">
+    <table>
+      <thead>
+        <tr>
+          <th>Food</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @foods_to_buy.each do |food| %>
+          <tr>
+            <td><%= food[:food_name] %></td>
+            <td><%= food[:quantity_to_buy] %></td>
+            <td><%= food[:total_price] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+  <% if @foods_to_buy.empty? %>
+    <p>You have all the food you need for your recipes!</p>
+    <script>
+      document.getElementById('table').style.display = 'none';
+    </script>
+  <% end %>
+</section>

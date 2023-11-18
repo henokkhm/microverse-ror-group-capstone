@@ -43,6 +43,17 @@ class RecipesController < ApplicationController
 
   def public_recipes
     @recipes = Recipe.includes(:user).where(public: true).order(created_at: :desc)
+
+    @total_prices = {}
+
+    @recipes.each do |recipe|
+      total = 0
+      recipe.foods_recipes.each do |foods_recipe|
+        total += foods_recipe.quantity * foods_recipe.food.price
+      end
+
+      @total_prices[recipe.name] = total
+    end
   end
 
   private

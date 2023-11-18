@@ -11,7 +11,7 @@
     <% @foods_recipe.each do |recipe_food| %>
       <tr>
         <td><%= recipe_food.food.name %></td>
-        <td><%= recipe_food.food.quantity %><%= recipe_food.food.measurement_unit %></td>
+        <td><%= recipe_food.quantity %><%= recipe_food.food.measurement_unit %></td>
         <td>$<%= recipe_food.food.price  * recipe_food.quantity %></td>
         <td>
           <%= form_with model: recipe_food, url: recipe_foods_recipe_path(@recipe, recipe_food), method: :delete do |f| %>
