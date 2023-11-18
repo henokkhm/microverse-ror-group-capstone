@@ -4,7 +4,9 @@
       <th>Food</th>
       <th>Quantity</th>
       <th>Value</th>
-      <th>Actions</th>
+      <% if current_user.id == @recipe.user_id %>
+        <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -13,11 +15,13 @@
         <td><%= recipe_food.food.name %></td>
         <td><%= recipe_food.quantity %><%= recipe_food.food.measurement_unit %></td>
         <td>$<%= recipe_food.food.price  * recipe_food.quantity %></td>
-        <td>
-          <%= form_with model: recipe_food, url: recipe_foods_recipe_path(@recipe, recipe_food), method: :delete do |f| %>
-            <%= f.submit 'Delete' %>
-          <% end %>
-        </td>
+        <% if current_user.id == @recipe.user_id %>
+          <td>
+            <%= form_with model: recipe_food, url: recipe_foods_recipe_path(@recipe, recipe_food), method: :delete do |f| %>
+              <%= f.submit 'Delete' %>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
