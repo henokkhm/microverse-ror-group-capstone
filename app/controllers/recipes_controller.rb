@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @user_has_access = @recipe.user_id == current_user || @recipe.public
     @foods_recipe = @recipe.foods_recipes.includes(:food)
   end
 
