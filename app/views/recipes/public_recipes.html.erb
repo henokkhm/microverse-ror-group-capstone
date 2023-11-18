@@ -1,0 +1,16 @@
+<section>
+  <h1>Public Recipes</h1>
+  <div class="recipe-card-wrapper">
+    <% @recipes.each do |recipe| %>
+      <div class="recipe-card">
+        <%= link_to recipe_path(recipe) do %>
+        <h2><%= recipe.name %> </h2>
+        <% end %>
+        <p>By: <b><%= recipe.user.name %></b> </p>
+        <p>Total food items: <b><%= recipe.foods_recipes.length %></b> </p>
+        <p>Total price: <b><%= @total_prices[recipe.name] %></b> </p>
+      </div>
+    <% end %>
+  </div>
+</section>
+
