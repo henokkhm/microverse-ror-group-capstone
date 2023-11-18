@@ -18,7 +18,11 @@
             <td><%= food.measurement_unit %></td>
             <td><%= food.quantity %></td>
             <td>$<%= food.price %></td>
-            <td><%= link_to 'DELETE', food_path(food), method: :delete %></td>
+            <td>
+              <%= form_with model: food, url: food_path(food), method: :delete do |f| %>
+                <%= f.submit 'Delete' %>
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
