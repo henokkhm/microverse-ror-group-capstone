@@ -4,7 +4,7 @@ class FoodsRecipeController < ApplicationController
     @foods = Food.where(user_id: current_user)
     @recipe = Recipe.find(params[:recipe_id])
   end
-  
+
   def create
     @foods_recipe = FoodsRecipe.new(food_recipe_params)
     @recipe = Recipe.find(params[:recipe_id])
@@ -20,14 +20,19 @@ class FoodsRecipeController < ApplicationController
   end
 
   def destroy
-    @foods_recipe = FoodsRecipe.find(params[:foods_recipe_id])
-    @foods_recipe.destroy
-    flash[:notice] = 'Ingredient deleted successfully!'
-    redirect_to recipe_path(@recipe)
+    @foods_recipe = FoodsRecipe.find(params[:id])
+    if @foods_recipe
+      @recipe = @foods_recipe.recipe
+      @foods_recipe.destroy
+      flash[:notice] = 'Ingredient deleted successfully!'
+      redirect_to recipe_path(@recipe)
+    else
+      flash[:alert] = 'Unable to delete ingredient!'
+    end
   end
 
   private
-  
+
   def food_recipe_params
     params.require(:foods_recipe).permit(:food_id, :quantity)
   end
