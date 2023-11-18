@@ -42,7 +42,7 @@ RSpec.describe 'Recipes', type: :request do
       recipe
 
       delete recipe_path(recipe)
-      expect(flash[:success]).to eq('Recipe deleted successfully!')
+      expect(flash[:notice]).to eq('Recipe deleted successfully!')
     end
   end
 end
