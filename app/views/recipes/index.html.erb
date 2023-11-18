@@ -1,22 +1,23 @@
 <section>
-  <%= link_to 'Add Recipe', new_recipe_path %>
+  <h1>Recipe List</h1>
+  <%= link_to 'Add Recipe', new_recipe_path, class: 'btn' %>
   <% user_has_recipes = false %>
-  <% @recipes.each do |recipe| %>
-    <% if recipe.user == current_user %>
-      <% user_has_recipes = true %>
-      <section>
-        <%= link_to recipe_path(recipe) do %>
-        <h3><%= recipe.name %> </h3>
-        <% end %>
-        <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |f| %>
-          <%= f.submit 'Remove' %>
-        <% end %>
-      </section>
-      <section>
-        <p><%= recipe.description %> </p>
-      </section>
+  <div class="recipe-card-wrapper">
+    <% @recipes.each do |recipe| %>
+      <% if recipe.user == current_user %>
+        <% user_has_recipes = true %>
+        <div class="recipe-card">
+          <%= link_to recipe_path(recipe) do %>
+          <h2><%= recipe.name %> </h2>
+          <% end %>
+          <%= form_with model: recipe, url: recipe_path(recipe), method: :delete do |f| %>
+            <%= f.submit 'Remove', class: 'btn btn-danger' %>
+          <% end %>
+          <p><%= recipe.description %> </p>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
   <% unless user_has_recipes %>
     <p>You have no recipes.</p>
   <% end %>

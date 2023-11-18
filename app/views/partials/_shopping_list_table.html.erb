@@ -1,6 +1,6 @@
-<section>
-  <section id="table">
-    <table>
+<div>
+  <div id="table">
+    <table class="generic-table">
       <thead>
         <tr>
           <th>Food</th>
@@ -18,11 +18,11 @@
         <% end %>
       </tbody>
     </table>
-  </section>
+  </div>
   <% if @foods_to_buy.empty? %>
     <p>You have all the food you need for your recipes!</p>
     <script>
       document.getElementById('table').style.display = 'none';
     </script>
   <% end %>
-</section>
+</div>
