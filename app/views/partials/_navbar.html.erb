@@ -1,14 +1,20 @@
-<nav>
-  <ul>
-    <li><%= link_to 'Recipe App', root_path %></li>
+<nav class='main-nav'>
+  <ul class='nav-list'>
+    <li class='logo'>
+      <%= link_to root_path do%>
+        <%= image_tag(asset_path('logo.png'), alt: 'Recipe App logo') %>
+      <% end %>
+    </li>
     <% if user_signed_in? %>
-      <li><%= link_to 'My Foods', foods_path %></li>
-      <li><%= link_to 'My Recipes', recipes_path %></li>
-      <li><%= link_to 'Public Recipes', public_recipes_path %></li>
-      <li><%= link_to 'Shopping List', general_shopping_lists_path %></li>
-      <li><%= button_to "Sign out", destroy_user_session_path, method: :delete %></li>         
+      <div>
+        <li><%= link_to 'My Foods', foods_path %></li>
+        <li><%= link_to 'My Recipes', recipes_path %></li>
+        <li><%= link_to 'Public Recipes', public_recipes_path %></li>
+        <li><%= link_to 'Shopping List', general_shopping_lists_path %></li>
+      </div>
+      <li><%= button_to 'Sign out', destroy_user_session_path, class: 'btn btn-danger', method: :delete %></li>         
     <% else %>
-      <li><%= button_to 'Sign In', new_user_session_path %></li>
+      <li><%= button_to 'Sign In', new_user_session_path, class: 'btn' %></li>
     <% end %>
   </ul>
 </nav>

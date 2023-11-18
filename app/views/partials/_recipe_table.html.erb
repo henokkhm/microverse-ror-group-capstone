@@ -1,4 +1,4 @@
-<table>
+<table class="generic-table">
   <thead>
     <tr>
       <th>Food</th>
@@ -15,7 +15,7 @@
         <td>$<%= recipe_food.food.price  * recipe_food.quantity %></td>
         <td>
           <%= form_with model: recipe_food, url: recipe_foods_recipe_path(@recipe, recipe_food), method: :delete do |f| %>
-            <%= f.submit 'Delete' %>
+            <%= f.submit 'Delete', class: 'btn btn-danger' %>
           <% end %>
         </td>
       </tr>

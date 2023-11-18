@@ -1,18 +1,16 @@
 <section>
   <h1>Public Recipes</h1>
-  <% @recipes.each do |recipe| %>
-  <section>
-    <div>
-      <%= link_to recipe_path(recipe) do %>
-      <h3><%= recipe.name %> </h3>
-      <% end %>
-      <p>By: <%= recipe.user.name %> </p>
-    </div>
-    <div>
-      <p>Total food items: <%= recipe.foods_recipes.length %> </p>
-      <p>Total price: <%= @total_prices[recipe.name] %> </p>
-    </div>
-  </section>
-  <% end %>
+  <div class="recipe-card-wrapper">
+    <% @recipes.each do |recipe| %>
+      <div class="recipe-card">
+        <%= link_to recipe_path(recipe) do %>
+        <h2><%= recipe.name %> </h2>
+        <% end %>
+        <p>By: <b><%= recipe.user.name %></b> </p>
+        <p>Total food items: <b><%= recipe.foods_recipes.length %></b> </p>
+        <p>Total price: <b><%= @total_prices[recipe.name] %></b> </p>
+      </div>
+    <% end %>
+  </div>
 </section>
 
