@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Recipe details page', type: :feature do
   before do
-    user = User.create(name: 'Tom')
+    user = User.create(name: 'tom', email: 'name@gmail.com', password: '12345678')
     @recipe = Recipe.create(name: 'test_recipe', description: 'test description', cooking_time: '1 hour',
                             preparation_time: '1hour', public: true, user:)
-
+    sign_in user
     visit recipe_path(@recipe)
   end
 
@@ -18,14 +18,14 @@ RSpec.describe 'Recipe details page', type: :feature do
   end
 
   it 'redirects to add food page on click' do
-    click_link 'Add food'
-    expect(page).to have_current_path(new_food_path)
+    click_link 'Add Ingredients'
+    expect(page).to have_current_path(new_recipe_foods_recipe_path(@recipe))
   end
 
   it 'renders food table' do
-    expect(page).to have_content('Name')
+    expect(page).to have_content('Food')
     expect(page).to have_content('Quantity')
-    expect(page).to have_content('Unit Price')
+    expect(page).to have_content('Value')
     expect(page).to have_content('Actions')
   end
 end
