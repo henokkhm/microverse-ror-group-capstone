@@ -42,7 +42,21 @@ RSpec.describe 'Recipes', type: :request do
       recipe
 
       delete recipe_path(recipe)
-      expect(flash[:success]).to eq('Recipe deleted successfully!')
+      expect(flash[:notice]).to eq('Recipe deleted successfully!')
+    end
+  end
+
+  describe 'GET /public_recipes' do
+    before do
+      get public_recipes_path
+    end
+
+    it 'returns correct status' do
+      expect(response.status).to eq(200)
+    end
+
+    it 'renders placeholder on page' do
+      expect(response.body).to include('Public Recipes')
     end
   end
 end

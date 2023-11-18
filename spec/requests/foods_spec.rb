@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Foods', type: :request do
+  let(:user) { User.create(name: 'tom') }
+
+  before do
+    sign_in user
+  end
+
   describe 'GET /index' do
     before do
       get foods_path
@@ -9,16 +15,6 @@ RSpec.describe 'Foods', type: :request do
     it 'returns correct status' do
       expect(response.status).to eq(200)
     end
-
-    ### When there are views:
-
-    # it 'renders the correct template' do
-    #   expect(response).to render_template('foods/index')
-    # end
-
-    # it 'returns the correct placeholder text' do
-    #   expect(response.body).to include('All foods')
-    # end
   end
 
   describe 'GET /new' do
@@ -36,8 +32,6 @@ RSpec.describe 'Foods', type: :request do
   end
 
   describe 'POST /foods' do
-    let(:user) { User.create(name: 'tom') }
-
     context 'with valid parameters' do
       it 'redirects to the index page' do
         food_params = {
@@ -90,7 +84,7 @@ RSpec.describe 'Foods', type: :request do
       food
 
       delete food_path(food)
-      expect(flash[:success]).to eq('Food deleted successfully!')
+      expect(flash[:notice]).to eq('Food deleted successfully!')
     end
   end
 end
